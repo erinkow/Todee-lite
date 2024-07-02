@@ -11,6 +11,8 @@ import { ListForm } from "./list-form";
 import { FormInput } from "@/components/form/form-input";
 import { useAction } from "@/hooks/use-action";
 import { updateList } from "@/action/update-list";
+import { deleteList } from "@/action/delete-list";
+import { FormSubmit } from "@/components/form/form-submit";
 
 interface ListHeaderProps {
     data: List;
@@ -31,6 +33,7 @@ export const ListHeader = ({
     const [title, setTitle] = useState(data.title);
     const formRef = useRef<ElementRef<'form'>>(null);
     const inputRef = useRef<ElementRef<'input'>>(null);
+    const closeRef = useRef<ElementRef<'form'>>(null);
 
     const enableEditing = () => {
         setIsEditing(true);
@@ -40,7 +43,10 @@ export const ListHeader = ({
         setIsEditing(false);
     }
 
-    const {execute, fieldErrors} = useAction(updateList, {
+    const {
+        execute: executeUpdate,
+        fieldErrors
+    } = useAction(updateList, {
         onSuccess: data => {
             toast.success(`List "${data.title}" updated`)
             setTitle(data.title)
@@ -50,6 +56,18 @@ export const ListHeader = ({
             toast.error(error)
         }
     });
+
+    const {
+        execute: executeDelete,
+    } = useAction(deleteList, {
+        onSuccess: data => {
+            toast.success(`List "${data.title}" deleted`)
+            closeRef.current?.click();
+        },
+        onError: error => {
+            toast.error(error)
+        }
+    })
 
     const onBlur = () => {
         formRef.current?.requestSubmit();
@@ -68,11 +86,21 @@ export const ListHeader = ({
             console.log('title was same')
         }
 
-        execute({
+        executeUpdate({
             title,
             id,
             boardId,
         });
+    }
+
+    const handleDelete = (formData: FormData) => {
+        const id = formData.get('id') as string;
+        const boardId = formData.get('boardId') as string;
+
+        executeDelete({
+            id,
+            boardId,
+        })
     }
 
     const onKeyDown = (e: KeyboardEvent) => {
@@ -106,10 +134,20 @@ export const ListHeader = ({
                 </form>
             ) : (
                 <div>
+                    {title}
                     <button onClick={enableEditing}>
                         Edit list
                     </button>
-                    {title}
+                    <form action={handleDelete} ref={closeRef}>
+                        <input hidden id="id" name="id" value={data.id} />
+                        <input hidden id="boardId" name="boardId" value={data.boardId}/>
+                        <FormSubmit
+                            variant="ghost"
+                            className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm"
+                        >
+                            Delete this list...
+                        </FormSubmit>
+                    </form>
                     
                 </div>        
 
