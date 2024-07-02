@@ -19,6 +19,7 @@ interface FormInputProps {
     defaultValue?: string;
     onBlur?: () => void;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    name: string;
 }
 
 export const FormInput = forwardRef<HTMLInputElement, FormInputProps>((
@@ -34,6 +35,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>((
         defaultValue = '',
         onBlur,
         onChange,
+        name,
     }, ref
 ) => {
     const {pending} = useFormStatus();
@@ -57,6 +59,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>((
                     aria-describedby={`${id}-error`}
                     ref={ref}
                     onChange={onChange}
+                    name={name}
                 />
             </div>
             <FormErrors

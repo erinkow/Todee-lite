@@ -26,7 +26,8 @@ const BoardIdPage: React.FC<BoardIdPageProps>= async ({
     const boardId = userId;
 
     const lists = await db.list.findMany({
-        where: {boardId: boardId}
+        where: {boardId: boardId},
+        orderBy: {order: 'asc'},
     });
     
 
