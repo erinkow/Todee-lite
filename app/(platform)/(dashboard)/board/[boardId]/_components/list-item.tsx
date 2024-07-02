@@ -12,25 +12,25 @@ import { ListForm } from "./list-form";
 
 interface ListItemProps {
     data: List;
-    isEditing: boolean;
-    enableEditing: () => void;
+    // isEditing: boolean;
+    // enableEditing: () => void;
     // disableEditing: () => void;
 }
 
 export const ListItem = ({
     data,
-    isEditing,
-    enableEditing,
+    // isEditing,
+    // enableEditing,
     // disableEditing
 }: ListItemProps) => {
 
     return(
-        <li>
+        <li key={data.id}>
             <div>
                 <ListHeader
                     data={data}
-                    isEditing={isEditing}
-                    enableEditing={enableEditing}
+                    // isEditing={isEditing}
+                    // enableEditing={enableEditing}
                     // disableEditing={disableEditing}
                 />
             </div>

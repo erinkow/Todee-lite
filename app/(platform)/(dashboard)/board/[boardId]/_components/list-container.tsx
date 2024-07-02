@@ -30,8 +30,8 @@ export const ListContainer = ({data}: ListContainerProps) => {
                 <ListItem
                     key={item.id}
                     data={item}
-                    isEditing={isEditing}
-                    enableEditing={enableEditing}
+                    // isEditing={isEditing}
+                    // enableEditing={enableEditing}
                     // disableEditing={disableEditing}
                 />
             ))}
