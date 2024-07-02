@@ -3,8 +3,6 @@
 // import { ListItem } from "./list-item";
 import { List } from "@prisma/client";
 import { ListItem } from "./list-item";
-import { useAction } from "@/hooks/use-action";
-import { createList } from "@/action/create-list";
 import { useState } from "react";
 import { ListForm } from "./list-form";
 import { Plus } from "lucide-react";
