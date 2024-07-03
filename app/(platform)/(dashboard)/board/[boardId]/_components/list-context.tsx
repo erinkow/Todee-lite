@@ -2,6 +2,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 interface ListContextProps {
     isEditing: boolean;
+    setIsEditing: (value: boolean) => void;
     enableEditing: () => void;
     disableEditing: () => void;
 }
@@ -20,7 +21,7 @@ export const ListProvider = ({ children }: { children: ReactNode }) => {
     };
 
     return (
-        <ListContext.Provider value={{ isEditing, enableEditing, disableEditing }}>
+        <ListContext.Provider value={{ isEditing, setIsEditing, enableEditing, disableEditing }}>
             {children}
         </ListContext.Provider>
     );

@@ -17,11 +17,14 @@ export const createSafeAction = <TInput, TOutput>(
     return async(data: TInput): Promise<ActionState<TInput, TOutput>> => {
         
         const validationResult =  schema.safeParse(data);
+        console.log(validationResult);
         
         if(!validationResult.success) {
             return {
                 fieldErrors: validationResult.error.flatten().fieldErrors as FieldErrors<TInput>,
             }
+        } else {
+            console.log('successed validation!')
         }
 
         return handler(validationResult.data)

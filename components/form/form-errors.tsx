@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { XCircle } from "lucide-react";
 
 interface FormErrorsProps {
     id: string;
@@ -20,7 +20,8 @@ export const FormErrors = ({
                     key={error}
                     className="flex items-center font-medium p-2 border border-rose-500 bg-rose-500/10 rounded-sm"
                 >
-                    <X className="w-4 h-4 mr-2"/>
+                    <XCircle className="w-4 h-4 mr-2"/>
+                    {error}
                 </div>
             ))}
 

@@ -18,7 +18,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
         }
     }
 
-    const { title, boardId } = data;
+    const { title, boardId, expiryDate } = data;
     let list;
 
     try {
@@ -33,6 +33,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
             data: {
                 title,
                 boardId,
+                expiryDate: expiryDate ? new Date(expiryDate) : null,
                 order: newOrder,
             }
         });

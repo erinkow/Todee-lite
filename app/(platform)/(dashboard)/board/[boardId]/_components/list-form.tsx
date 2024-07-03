@@ -11,23 +11,25 @@ import { useParams } from "next/navigation";
 import { ElementRef, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useOnClickOutside } from "usehooks-ts";
+import { useListContext } from "./list-context";
 
-interface ListFormProps {
-    // data: List
-    isEditing: boolean;
-    // enableEditing: () => void;
-    disableEditing: () => void;
-}
+// interface ListFormProps {
+//     // data: List
+//     isEditing: boolean;
+//     // enableEditing: () => void;
+//     disableEditing: () => void;
+// }
 
-export const ListForm = ({
-    // data,
-    isEditing,
-    // enableEditing,
-    disableEditing,
-}: ListFormProps) => {
+export const ListForm = (
+    // // data,
+    // isEditing,
+    // // enableEditing,
+    // disableEditing,
+) => {
     const params = useParams();
 
     const [title, setTitle] = useState('');
+    const {isEditing, disableEditing} = useListContext();
 
     const formRef = useRef<ElementRef<'form'>>(null);
     const inputRef = useRef<HTMLInputElement>(null);

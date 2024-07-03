@@ -15,6 +15,8 @@ import { deleteList } from "@/action/delete-list";
 import { FormSubmit } from "@/components/form/form-submit";
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2 } from "lucide-react";
+import { ListExpiration } from "./list-expiration";
+import { Calendar } from "@/components/ui/calendar";
 
 interface ListHeaderProps {
     data: List;
@@ -154,7 +156,8 @@ export const ListHeader = ({
                 )}
      
             </div>        
-                <div className="flex flex-row justify-end mt-auto">
+                <div className="flex flex-row justify-around mt-auto">
+                    <ListExpiration data={data}/>
                     <form action={handleDelete} ref={closeRef}>
                         <input hidden id="id" name="id" value={data.id} />
                         <input hidden id="boardId" name="boardId" value={data.boardId}/>
