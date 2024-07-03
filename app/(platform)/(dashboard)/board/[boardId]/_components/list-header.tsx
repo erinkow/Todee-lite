@@ -2,7 +2,7 @@
 
 import { toast } from "sonner";
 import { useParams } from "next/navigation";
-import { useEventListener } from "usehooks-ts";
+import { useEventListener, useOnClickOutside } from "usehooks-ts";
 import { ElementRef, useRef, useState } from "react";
 
 import { List } from "@prisma/client"
@@ -13,6 +13,8 @@ import { useAction } from "@/hooks/use-action";
 import { updateList } from "@/action/update-list";
 import { deleteList } from "@/action/delete-list";
 import { FormSubmit } from "@/components/form/form-submit";
+import { Button } from "@/components/ui/button";
+import { Pencil, Trash2 } from "lucide-react";
 
 interface ListHeaderProps {
     data: List;
@@ -110,48 +112,61 @@ export const ListHeader = ({
         console.log('onKeyDown was conducted')
     }
 
+    useOnClickOutside(formRef, () => formRef.current?.requestSubmit())
     useEventListener('keydown', onKeyDown);
 
     return(
-        <div>
-            {isEditing ? (
-                <form 
-                    action={handleSubmit}
-                    ref={formRef}
-                >
-                    <input hidden id="id" name="id" value={data.id}/>
-                    <input hidden id="boardId" name="boardId" value={data.boardId} />
-                    <FormInput
-                        ref={inputRef}
-                        onBlur={onBlur}
-                        id='title'
-                        placeholder='Enter list title...'
-                        defaultValue={title}
-                        errors={fieldErrors}
-                        name='title'
-                    />
-                    <button type="submit" hidden/>
-                </form>
-            ) : (
-                <div>
-                    {title}
-                    <button onClick={enableEditing}>
-                        Edit list
-                    </button>
+        <div className="rounded-md m-3 p-2 flex flex-col justify-between h-full">
+            <div className={`flex flex-row justify-between items-center ${isEditing ? 'editing-mode' : ''}`}>
+                {isEditing ? (
+                    <form 
+                        action={handleSubmit}
+                        ref={formRef}
+                        className="border rounded-md flex-1 px-[2px] m-3"
+                    >
+                        <input hidden id="id" name="id" value={data.id}/>
+                        <input hidden id="boardId" name="boardId" value={data.boardId} />
+                        <FormInput
+                            ref={inputRef}
+                            onBlur={onBlur}
+                            id='title'
+                            placeholder='Enter list title...'
+                            defaultValue={title}
+                            errors={fieldErrors}
+                            name='title'
+                            className="text-md font-bold px-[7px] py-2 h-7 border-transparent hover:border-none focus:border-input transition truncate bg-transparent focus:bg-white"
+                        />
+                        <button type="submit" hidden/>
+                    </form>
+                ) : (
+                    <>
+                        <label className="flex rounded-lg justify-center font-bold items-center m-3 cursor-pointer hover:bg-accent hover:text-accent-foreground" onClick={enableEditing}>
+                            <h1 className="ml-2" onClick={enableEditing}>{title}</h1>
+                            <Button 
+                                
+                                className='rounded-none w-auto h-auto py-2 px-5 justify-start font-normal text-sm'
+                                variant='ghost'
+                            >
+                                <Pencil className="w-4 h-4 mx-2"/>
+                            </Button>
+                        </label>
+                    </>
+                )}
+     
+            </div>        
+                <div className="flex flex-row justify-end mt-auto">
                     <form action={handleDelete} ref={closeRef}>
                         <input hidden id="id" name="id" value={data.id} />
                         <input hidden id="boardId" name="boardId" value={data.boardId}/>
                         <FormSubmit
                             variant="ghost"
-                            className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm"
+                            className="rounded-none w-auto h-auto py-2 px-5 font-normal text-sm"
                         >
-                            Delete this list...
+                            <Trash2 className="w-4 h-4 mx-2"/>
                         </FormSubmit>
                     </form>
-                    
-                </div>        
 
-            )}
+                </div>
         </div>
     )
 }
