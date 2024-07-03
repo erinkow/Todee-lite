@@ -25,8 +25,11 @@ export const ListItem = ({
 }: ListItemProps) => {
 
     return(
-        <li key={data.id}>
-            <div>
+        <li 
+            key={data.id}
+            className="shrink-0 h-auto w-[272px] select-none mb-3 bg-neutral-50 border-none shadow-lg"
+        >
+            <div className="">
                 <ListHeader
                     data={data}
                     // isEditing={isEditing}

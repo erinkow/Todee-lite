@@ -10,6 +10,7 @@ import { Plus, X } from "lucide-react";
 import { useParams } from "next/navigation";
 import { ElementRef, useRef, useState } from "react";
 import { toast } from "sonner";
+import { useOnClickOutside } from "usehooks-ts";
 
 interface ListFormProps {
     // data: List
@@ -30,6 +31,7 @@ export const ListForm = ({
 
     const formRef = useRef<ElementRef<'form'>>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    const closeRef = useRef<ElementRef<'div'>>(null);
 
     const {execute, fieldErrors} = useAction(createList, {
         onSuccess: data => {
@@ -64,17 +66,21 @@ export const ListForm = ({
         setTitle(e.target.value);
     }
 
+    // useOnClickOutside(closeRef, () => disableEditing())
+
     if(isEditing) {
         return(
             <form 
                 action={onSubmit}
                 ref={formRef}
+                className="flex flex-col items-center p-4"
             >
                 <FormInput
                     ref={inputRef}
                     onChange={onChange}
                     placeholder="Enter a title..."
-                    
+                    defaultValue={title}
+                    className='text-sm px-5 py-5 h-55 w-40 font-medium border-transparent hover:border-input focus:border-input transition truncate bg-transparent focus:bg-white'
                 />
                 <input 
                     hidden 
@@ -86,13 +92,14 @@ export const ListForm = ({
                     name="title"
                     value={title}
                 />
-                <div className="flex items-center gap-x-1">
-                    <FormSubmit>
-                        Add list
+                <div className="flex items-center gap-x-3 mt-4" ref={closeRef}>
+                    <FormSubmit variant="ghost">
+                        Submit
                     </FormSubmit>
                     <Button
                         size='sm'
                         onClick={disableEditing}
+                        variant='ghost'
                     >
                         <X className="w-4 h-4 mr-2"/>
                     </Button>

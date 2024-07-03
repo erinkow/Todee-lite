@@ -34,9 +34,11 @@ const BoardIdPage: React.FC<BoardIdPageProps>= async ({
     return(
         <div className="p-10 h-full overflow-x-auto">
             Board Id '{params.boardId}' page!
-            <ListContainer 
-                data={lists}
-            />
+            <div className="flex justify-center items-center top-11">
+                <ListContainer 
+                    data={lists}
+                />
+            </div>
         </div>
     );
 };
