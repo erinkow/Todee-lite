@@ -80,7 +80,7 @@ const Content = ({ data }: { data: List[] }) => {
     }
   };
   return (
-    <div className='w-[310px] max-w-md p-4 shadow-lg rounded-lg h-[44rem] flex flex-col bg-neutral-100'>
+    <div className='w-[310px] max-w-md p-4 shadow-lg rounded-lg h-[40rem] md:h-[55rem] lg:h-[40rem] 2xl:h-[44rem] flex flex-col bg-neutral-100'>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId='lists' type='list' direction='vertical'>
           {(provided) => (
@@ -89,7 +89,7 @@ const Content = ({ data }: { data: List[] }) => {
               ref={provided.innerRef}
               className='flex flex-col roun items-center justify-start overflow-y-auto flex-grow'
             >
-              <div className='p-[40px]'>
+              <div className='p-[8px] 2xl:p-[40px]'>
                 {orderedData?.map((item, index) => (
                   <ListItem key={item.id} data={item} index={index} />
                 ))}
