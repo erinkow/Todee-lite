@@ -42,7 +42,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>((
     return(
 
         <div className="w-[200px]">
-            <div className="flex border rounded-sm h-[50px] items-center">
+            <div className="flex border rounded-sm items-center">
                 {label 
                     ? <Label>{label}</Label>
                     : null
