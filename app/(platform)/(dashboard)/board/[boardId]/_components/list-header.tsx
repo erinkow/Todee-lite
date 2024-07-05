@@ -7,7 +7,6 @@ import { ElementRef, useRef, useState } from "react";
 
 import { List } from "@prisma/client"
 
-import { ListForm } from "./list-form";
 import { FormInput } from "@/components/form/form-input";
 import { useAction } from "@/hooks/use-action";
 import { updateList } from "@/action/update-list";
@@ -16,7 +15,6 @@ import { FormSubmit } from "@/components/form/form-submit";
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2 } from "lucide-react";
 import { ListExpiration } from "./list-expiration";
-import { Calendar } from "@/components/ui/calendar";
 
 interface ListHeaderProps {
     data: List;
