@@ -158,7 +158,7 @@ export const ListHeader = ({
             </div>        
                 <div className="flex flex-row justify-around mt-auto">
                     <ListExpiration data={data}/>
-                    <form action={handleDelete} ref={closeRef}>
+                    <form action={handleDelete} ref={closeRef} className="flex items-center">
                         <input hidden id="id" name="id" value={data.id} />
                         <input hidden id="boardId" name="boardId" value={data.boardId}/>
                         <FormSubmit

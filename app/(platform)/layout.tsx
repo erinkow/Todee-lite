@@ -19,10 +19,12 @@ const PlatformLayout = ({
     children: React.ReactNode
 }) => {
     const clerkPubKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+    
     return (
         <ClerkProvider
             publishableKey={clerkPubKey}
-        >ß
+            // signInFallbackRedirectUrl="/board/:boardId"
+        >
             <Toaster/>
                 {children}
                 {/* <QueryProvider>

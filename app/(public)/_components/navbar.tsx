@@ -1,13 +1,14 @@
 import { Blend } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { Logo } from "@/components/logo"
 // import { SignIn } from "@/components/signin";
 
 export const Navbar = async () => {
     return(
         <div className="flex items-center justify-around h-20">
             <div className="flex">
-                Logo
+                <Logo/>
             </div>
             <div>
                 <Button

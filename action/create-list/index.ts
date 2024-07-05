@@ -19,6 +19,9 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     }
 
     const { title, boardId, expiryDate } = data;
+
+    if(!title || title === '')  console.log('Title is not set');
+
     let list;
 
     try {
@@ -28,7 +31,6 @@ const handler = async (data: InputType): Promise<ReturnType> => {
         })
 
         const newOrder = lastList ? lastList.order + 1 : 1;
-
         list = await db.list.create({
             data: {
                 title,
@@ -37,6 +39,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
                 order: newOrder,
             }
         });
+
     } catch (error) {
         return {
             error: 'Failed to create'

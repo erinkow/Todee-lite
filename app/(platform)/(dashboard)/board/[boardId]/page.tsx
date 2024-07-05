@@ -18,12 +18,16 @@ const BoardIdPage: React.FC<BoardIdPageProps>= async ({
     data
 }) => {
     const { userId } = auth();
+    console.log(userId)
+    console.log('params userId', params.boardId);
 
     if(!userId) {
         redirect('/sign-in');
     }
 
-    const boardId = userId;
+    console.log('params.boardId', params.boardId)
+
+    const boardId = userId
 
     const lists = await db.list.findMany({
         where: {boardId: boardId},
@@ -32,8 +36,7 @@ const BoardIdPage: React.FC<BoardIdPageProps>= async ({
     
 
     return(
-        <div className="p-10 h-full overflow-x-auto">
-            Board Id '{params.boardId}' page!
+        <div className="p-8 h-full overflow-x-auto">
             <div className="flex justify-center items-center top-11">
                 <ListContainer 
                     data={lists}

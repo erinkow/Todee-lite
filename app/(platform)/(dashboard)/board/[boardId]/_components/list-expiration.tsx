@@ -130,10 +130,10 @@ export const ListExpiration =  ({data}: ListExpirationProps) => {
                       selected={expiryDate ? new Date(expiryDate) : undefined}
                       onSelect={handleDateSelect}
                   />
-                  <div>
-                      <Button type='submit'>Save</Button>
+                  <div className="flex justify-around">
+                      <Button size='sm' variant='outline' type='submit'>Save</Button>
                       <PopoverClose asChild>
-                          <Button className="mt-4">Close</Button>
+                          <Button size='sm' variant='outline' className="">Close</Button>
                       </PopoverClose>
                   </div>
               </form>

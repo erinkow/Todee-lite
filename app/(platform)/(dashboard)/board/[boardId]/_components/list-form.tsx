@@ -57,7 +57,11 @@ export const ListForm = (
         // const id = formData.get('id') as string;
         // const title = formData.get('title') as string;
         const boardId = params.boardId as string;
-
+        if(!title) {
+            return {
+                error: 'Title is empty'
+            }
+        }
         execute({
             title,
             boardId
@@ -75,14 +79,15 @@ export const ListForm = (
             <form 
                 action={onSubmit}
                 ref={formRef}
-                className="flex flex-col items-center p-4"
+                className="flex flex-col items-center p-4 "
             >
                 <FormInput
                     ref={inputRef}
                     onChange={onChange}
                     placeholder="Enter a title..."
                     defaultValue={title}
-                    className='text-sm px-5 py-5 h-55 w-40 font-medium border-transparent hover:border-input focus:border-input transition truncate bg-transparent focus:bg-white'
+                    errors={fieldErrors}
+                    className='border rounded-sm text-sm py-5 h-full w-full font-medium border-transparent hover:border-input focus:border-input transition truncate bg-transparent focus:bg-white'
                 />
                 <input 
                     hidden 
@@ -94,8 +99,8 @@ export const ListForm = (
                     name="title"
                     value={title}
                 />
-                <div className="flex items-center gap-x-3 mt-4" ref={closeRef}>
-                    <FormSubmit variant="ghost">
+                <div className="flex items-center gap-x-3 " ref={closeRef}>
+                    <FormSubmit variant="ghost" className="text-neutral-800 mt-1">
                         Submit
                     </FormSubmit>
                     <Button
@@ -103,7 +108,7 @@ export const ListForm = (
                         onClick={disableEditing}
                         variant='ghost'
                     >
-                        <X className="w-4 h-4 mr-2"/>
+                        <X className="w-4 h-4 mr-2 text-neutral-800"/>
                     </Button>
                 </div>
             </form>
