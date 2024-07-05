@@ -41,8 +41,8 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>((
     const {pending} = useFormStatus();
     return(
 
-        <div>
-            <div>
+        <div className="w-[200px]">
+            <div className="flex border rounded-sm h-[50px] items-center">
                 {label 
                     ? <Label>{label}</Label>
                     : null
@@ -53,7 +53,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>((
                     placeholder={placeholder}
                     required={required}
                     disabled={pending || disabled}
-                    className={cn('text-sm px-2 py-1 h-7', className,)}
+                    className={cn('text-sm', className,)}
                     defaultValue={defaultValue}
                     onBlur={onBlur}
                     aria-describedby={`${id}-error`}
