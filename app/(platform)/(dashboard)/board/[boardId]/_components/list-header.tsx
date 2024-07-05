@@ -122,7 +122,7 @@ export const ListHeader = ({
                     <form 
                         action={handleSubmit}
                         ref={formRef}
-                        className="border rounded-md flex-1 px-[2px] m-3"
+                        className="rounded-md flex-1 px-[2px] m-3"
                     >
                         <input hidden id="id" name="id" value={data.id}/>
                         <input hidden id="boardId" name="boardId" value={data.boardId} />
@@ -134,7 +134,7 @@ export const ListHeader = ({
                             defaultValue={title}
                             errors={fieldErrors}
                             name='title'
-                            className="text-md font-bold px-[7px] py-2 h-7 border-transparent hover:border-none focus:border-input transition truncate bg-transparent focus:bg-white"
+                            className="text-md font-bold px-[7px] border-transparent  transition truncate bg-transparent focus:bg-white"
                         />
                         <button type="submit" hidden/>
                     </form>

@@ -87,7 +87,7 @@ export const ListForm = (
                     placeholder="Enter a title..."
                     defaultValue={title}
                     errors={fieldErrors}
-                    className='border rounded-sm text-sm py-5 h-full w-full font-medium border-transparent hover:border-input focus:border-input transition truncate bg-transparent focus:bg-white'
+                    className='rounded-sm text-sm py-5 h-full w-full font-medium border-transparent hover:border-input  transition truncate bg-transparent focus:bg-white'
                 />
                 <input 
                     hidden 
