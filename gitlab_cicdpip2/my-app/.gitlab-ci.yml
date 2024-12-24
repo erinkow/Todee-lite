@@ -1,0 +1,30 @@
+stages:
+  - build
+  - push
+  - deploy
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker compose build
+
+push:
+  stage: push
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker compose push
+  only:
+    - master
+
+  deploy:
+    stage: deploy
+    image: docker:latest
+    script:
+      - echo "Deploying to production environment..."
+    only:
+      - master

@@ -1,0 +1,26 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    image: registry.gitlab.com/wanko_s_group/cicdpip2.git:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  deb:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    image: registry.gitlab.com/anko_s_group/cicdpip2.git:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    networks:
+      - app-network
+  
+  networks:
+    app-network:
+      driver: bridge
