@@ -122,9 +122,9 @@ export const ListExpiration =  ({data}: ListExpirationProps) => {
           </PopoverTrigger>
           <PopoverContent align="center" side="bottom" sideOffset={10} className="w-80 p-4">
               <form action={handleSubmit} ref={formRef}>
-                  <input hidden name="id" value={data.id} />
-                  <input hidden name="boardId" value={data.boardId} />
-                  <input hidden name="expiryDate" value={expiryDate ? expiryDate.toISOString() : ''} />
+                  <input hidden name="id" value={data.id} readOnly/>
+                  <input hidden name="boardId" value={data.boardId} readOnly/>
+                  <input hidden name="expiryDate" value={expiryDate ? expiryDate.toISOString() : ''} readOnly/>
                   <Calendar
                       mode="single"
                       selected={expiryDate ? new Date(expiryDate) : undefined}

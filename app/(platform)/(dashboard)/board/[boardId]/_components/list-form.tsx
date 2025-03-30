@@ -53,14 +53,13 @@ export const ListForm = (
     //     setIsEditing(false);
     // }
 
-    const onSubmit = () => {
+    const onSubmit = (formData: FormData) => {
         // const id = formData.get('id') as string;
         // const title = formData.get('title') as string;
         const boardId = params.boardId as string;
         if(!title) {
-            return {
-                error: 'Title is empty'
-            }
+            toast.error("Title is required");
+            return;
         }
         execute({
             title,
@@ -91,13 +90,15 @@ export const ListForm = (
                 />
                 <input 
                     hidden 
-                    value={params.boardId}
+                    defaultValue={params.boardId}
                     name="boardId"
+                    readOnly
                 />
-                <input 
+                <input
                     hidden 
                     name="title"
-                    value={title}
+                    defaultValue={title}
+                    readOnly
                 />
                 <div className="flex items-center gap-x-3 " ref={closeRef}>
                     <FormSubmit variant="ghost" className="text-neutral-800 mt-1">

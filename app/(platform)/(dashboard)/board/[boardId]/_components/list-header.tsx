@@ -124,8 +124,8 @@ export const ListHeader = ({
                         ref={formRef}
                         className="rounded-md flex-1 px-[2px] m-3"
                     >
-                        <input hidden id="id" name="id" value={data.id}/>
-                        <input hidden id="boardId" name="boardId" value={data.boardId} />
+                        <input hidden id="id" name="id" value={data.id} readOnly/>
+                        <input hidden id="boardId" name="boardId" value={data.boardId} readOnly/>
                         <FormInput
                             ref={inputRef}
                             onBlur={onBlur}
@@ -157,8 +157,8 @@ export const ListHeader = ({
                 <div className="flex flex-row justify-around mt-auto">
                     <ListExpiration data={data}/>
                     <form action={handleDelete} ref={closeRef} className="flex items-center">
-                        <input hidden id="id" name="id" value={data.id} />
-                        <input hidden id="boardId" name="boardId" value={data.boardId}/>
+                        <input hidden id="id" name="id" value={data.id} readOnly/>
+                        <input hidden id="boardId" name="boardId" value={data.boardId} readOnly/>
                         <FormSubmit
                             variant="ghost"
                             className="rounded-none w-auto h-auto py-2 px-5 font-normal text-sm"

@@ -60,6 +60,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>((
                     ref={ref}
                     onChange={onChange}
                     name={name}
+                    readOnly
                 />
             </div>
             <FormErrors
